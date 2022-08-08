@@ -10,21 +10,20 @@ describe 'Munchies API' do
         it 'send a current, daily, and hourly weather report' do
 
             get '/api/v1/munchies?location=denver,co&food=chinese'
-            binding.pry
             expect(response.status).to eq(200)
-
+            
             destination = JSON.parse(response.body, symbolize_names: true)
 
-            expect(destination[:id]).to eq(nil)
-            expect(destination[:type]).to eq("munchie")
-            expect(destination[:attributes]).to be_a(Hash)
-            expect(destination[:attributes][:destination_city]).to be('denver,co')
-            expect(destination[:attributes][:forecast]).to be_a(Hash)
-            expect(destination[:attributes][:forecast][:summary]).to be_a(String)
-            expect(destination[:attributes][:forecast][:temperature]).to be_a(String)
-            expect(destination[:attributes][:restaurant]).to be_a(Hash)
-            expect(destination[:attributes][:restaurant][:name]).to be_a(String)
-            expect(destination[:attributes][:restaurant][:address]).to be_a(String)
+            expect(destination[:data][:id]).to eq(nil)
+            expect(destination[:data][:type]).to eq("munchie")
+            expect(destination[:data][:attributes]).to be_a(Hash)
+            expect(destination[:data][:attributes][:destination_city]).to eq('Denver, CO')
+            expect(destination[:data][:attributes][:forecast]).to be_a(Hash)
+            expect(destination[:data][:attributes][:forecast][:summary]).to be_a(String)
+            expect(destination[:data][:attributes][:forecast][:temperature]).to be_a(String)
+            expect(destination[:data][:attributes][:restaurant]).to be_a(Hash)
+            expect(destination[:data][:attributes][:restaurant][:name]).to be_a(String)
+            expect(destination[:data][:attributes][:restaurant][:address]).to be_a(String)
         end
     end
 end
