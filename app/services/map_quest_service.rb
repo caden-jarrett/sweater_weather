@@ -10,5 +10,5 @@ class MapQuestService
         response = conn.get("/geocoding/v1/address?location=#{location}")
         data = JSON.parse(response.body, symbolize_names: true)
         data[:results][0][:locations][0][:latLng]
-    end
+    end 
 end
