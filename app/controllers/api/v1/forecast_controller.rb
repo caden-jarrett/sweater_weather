@@ -1,6 +1,10 @@
 class Api::V1::ForecastController < ApplicationController
     def index
-        serialize_weather
+        if params[:location]
+            serialize_weather
+        else 
+            render json: {error: 'What are you looking for?'}, status: 400
+        end   
     end
 
 
@@ -15,6 +19,6 @@ class Api::V1::ForecastController < ApplicationController
     end
 
     def serialize_weather
-         render json: Forecast.new(ForecastSerializer.format_forecast(forecast_info))
+         render json: ForecastSerializer.format_forecast(forecast_info)
     end
 end
