@@ -1,14 +1,14 @@
 require 'rails_helper'
 
-describe 'user creation endpoint' do
+describe 'user session endpoint' do
     describe 'happy path' do
-        it 'exposes a users information for creation' do
+        it 'exposes a users information for log in' do
+            User.create(email: 'test@gmail.com', password: 'password123', password_confirmation: 'password123', api_key: 'AASV34gasda')
             login = {
                 email: 'test@gmail.com',
-                password: 'password123',
-                password_confirmation: 'password123'
+                password: 'password123'
             }
-            post '/api/v1/users', params:login
+            post '/api/v1/sessions', params:login
             
             user1 = User.first
 
@@ -24,43 +24,40 @@ describe 'user creation endpoint' do
         it 'returns a 400 error if passwords dont match' do
             login = {
                 email: 'test@gmail.com',
-                password: 'password123',
-                password_confirmation: 'password122'
+                password: 'password12'
             }
-            post '/api/v1/users', params:login
+            post '/api/v1/sessions', params:login
 
             response_body = JSON.parse(response.body, symbolize_names: true)
 
             expect(response.status).to eq 400
-            expect(response_body[:error]).to eq "Password confirmation doesn't match Password"
+            expect(response_body[:error]).to eq 'Incorrect login information'
         end
 
-        it 'returns a 400 error if no email is input' do
+        it 'returns a 400 error if a email isnt entered' do
             login = {
                 email: '',
-                password: 'password123',
-                password_confirmation: 'password123'
+                password: 'password123'
             }
-            post '/api/v1/users', params:login
+            post '/api/v1/sessions', params:login
 
             response_body = JSON.parse(response.body, symbolize_names: true)
 
             expect(response.status).to eq 400
-            expect(response_body[:error]).to eq "Email can't be blank"
+            expect(response_body[:error]).to eq 'Incorrect login information'
         end
 
-        it 'returns a 400 error if nothing is input' do
+        it 'returns a 400 error if nothing is entered' do
             login = {
                 email: '',
-                password: '',
-                password_confirmation: ''
+                password: ''
             }
-            post '/api/v1/users', params:login
+            post '/api/v1/sessions', params:login
 
             response_body = JSON.parse(response.body, symbolize_names: true)
 
             expect(response.status).to eq 400
-            expect(response_body[:error]).to eq "Email can't be blank, Password can't be blank, and Password can't be blank"
+            expect(response_body[:error]).to eq 'Incorrect login information'
         end
     end
 end
