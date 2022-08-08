@@ -5,17 +5,17 @@ class ResponseSerializer
                 id: nil,
                 type: 'munchie',
                 attributes: {
-                    destination_city: "#{location_food[:businesses].first[:location][:city]}, #{location_food[:businesses].first[:location][:state]}",
+                    destination_city: "#{location_food.location}",
                     forecast: {
                         summary: weather[:current][:weather].first[:description],
                         temperature: weather[:current][:temp].to_s
                     },
                     restaurant: {
-                        name: location_food[:businesses].first[:name],
-                        address: "#{location_food[:businesses].first[:location][:display_address].first}, #{location_food[:businesses].first[:location][:display_address].second}"
-                    }
+                        name: location_food.name,
+                        address: "#{location_food.address}"
                     }
                 }
             }
+        }
     end
 end

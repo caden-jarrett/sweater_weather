@@ -1,5 +1,5 @@
 class YelpFacade 
     def self.get_location(city, food)
-        YelpService.get_info(city, food)
+        Yelp.new(YelpService.get_info(city, food))
     end
 end
