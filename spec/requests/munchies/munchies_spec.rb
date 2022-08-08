@@ -10,7 +10,7 @@ describe 'Munchies API' do
         it 'send a current, daily, and hourly weather report' do
 
             get '/api/v1/munchies?location=denver,co&food=chinese'
-
+            binding.pry
             expect(response.status).to eq(200)
 
             destination = JSON.parse(response.body, symbolize_names: true)
