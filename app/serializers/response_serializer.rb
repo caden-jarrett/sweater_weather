@@ -1,5 +1,5 @@
 class ResponseSerializer 
-    def self.get_all_info(location_food, weather, city)
+    def self.get_all_info(location_food, weather)
         {
             data: {
                 id: nil,

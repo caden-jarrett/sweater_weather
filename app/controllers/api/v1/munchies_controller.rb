@@ -1,6 +1,6 @@
 class Api::V1::MunchiesController < ApplicationController
     def index 
-        get_all_info(location_food, weather, city)
+        get_all_info(location_food, weather)
     end
 
     private 
@@ -25,7 +25,7 @@ class Api::V1::MunchiesController < ApplicationController
         YelpFacade.get_location(city, food)
     end
 
-    def get_all_info(location_food, weather, city)
-        render json: ResponseSerializer.get_all_info(location_food, weather, city)
+    def get_all_info(location_food, weather)
+        render json: ResponseSerializer.get_all_info(location_food, weather)
     end
 end
