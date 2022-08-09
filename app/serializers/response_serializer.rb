@@ -7,8 +7,8 @@ class ResponseSerializer
                 attributes: {
                     destination_city: "#{location_food.location}",
                     forecast: {
-                        summary: weather[:current][:weather].first[:description],
-                        temperature: weather[:current][:temp].to_s
+                        summary: weather.current_weather[:conditions],
+                        temperature: weather.current_weather[:temperature]
                     },
                     restaurant: {
                         name: location_food.name,
