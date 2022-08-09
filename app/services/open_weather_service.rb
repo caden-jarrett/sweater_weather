@@ -11,6 +11,7 @@ class OpenWeatherService
             f.params['appid'] = ENV['forecast_key']
         end
         data = JSON.parse(response.body, symbolize_names: true)
+
         Forecast.new(data)
     end
 end
