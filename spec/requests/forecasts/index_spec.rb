@@ -36,8 +36,8 @@ describe 'Forecast API' do
             expect(@forecast[:current_weather][:datetime]).to be_a String
             expect(@forecast[:current_weather][:sunrise]).to be_a String
             expect(@forecast[:current_weather][:sunset]).to be_a String
-            expect(@forecast[:current_weather][:temperature]).to be_a Float 
-            expect(@forecast[:current_weather][:feels_like]).to be_a Float
+            expect(@forecast[:current_weather][:temperature]).to be_a Numeric 
+            expect(@forecast[:current_weather][:feels_like]).to be_a Numeric
             expect(@forecast[:current_weather][:humidity]).to be_a Integer
             expect(@forecast[:current_weather][:uvi]).to be_a Float
             expect(@forecast[:current_weather][:visibility]).to be_a Integer
@@ -60,7 +60,7 @@ describe 'Forecast API' do
                 expect(hw).to have_key :conditions
                 expect(hw).to have_key :icon
                 expect(hw[:time]).to be_a String
-                expect(hw[:temperature]).to be_a Float
+                expect(hw[:temperature]).to be_a Numeric
                 expect(hw[:conditions]).to be_a String
                 expect(hw[:icon]).to be_a String
 
