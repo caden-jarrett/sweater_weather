@@ -1,15 +1,13 @@
-<p align="center">
-  <img src="https://i.imgur.com/rG1VD2K.png" />
-</p>
+
 <center><h1>Info</h1></center>
 This is the final project for the 2203 BE module 3. This repo holds endpoits that are made available by running rails s and looking for the responnses within postman. User endpoints are below, and display data for a front end program that would make calls to these endpoints on the back end of this application. The API's used are listed below as well.
 
 
-## Built With 
+# Built With 
    ![RoR](https://img.shields.io/badge/Ruby_on_Rails-CC0000?style=for-the-badge&logo=ruby-on-rails&logoColor=white)
    ![pgsql](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
 
-## Gems 
+# Gems 
    ![rspec](https://img.shields.io/gem/v/rspec-rails?label=rspec&style=flat-square)
    ![shoulda](https://img.shields.io/gem/v/shoulda-matchers?label=shoulda-matchers&style=flat-square)
    ![capybara](https://img.shields.io/gem/v/capybara?label=capybara&style=flat-square)
@@ -18,31 +16,33 @@ This is the final project for the 2203 BE module 3. This repo holds endpoits tha
    ![faraday](https://img.shields.io/gem/v/faraday?color=blue&label=faraday)
    ![jsonapi-serializer](https://img.shields.io/gem/v/jsonapi-serializer?color=blue&label=jsonapi-serializer)
 
-## Set Up
+# Set Up
 - Clone this repo
 - `bundle install`
 - `rails s`
 
-## Database Creation
+# Database Creation
 - `rails db:{create,migrate}``
 
-## Database Structure
+# Database Structure
 
-![Database](images/Screen Shot 2022-08-09 at 5.10.47 PM.png)
+![Database](images/database.jpeg)
 
-## Testing Instructions
+# Testing Instructions
 
  - Clone this repo
  - in terminal (apple or integrated)    
     * bundle install
     * bundle exec rspec 
 
-## API's
-    - ![Open Weather](https://openweathermap.org/api/one-call-3)
-    - ![MapQuest](https://developer.mapquest.com/)
-## End Points
+# API's
+ [Open Weather](https://openweathermap.org/api)
 
-#### Road Trip 
+ [MapQuest](https://developer.mapquest.com/)
+
+# End Points
+
+## Road Trip 
 
 ```
 get http://localhost:3000/api/v1/road_trip?origin="Denver,CO"&destination="Pueblo,CO"&api_key=e19544b7ea8d785acdabf9b63faae8d7
@@ -66,7 +66,7 @@ get http://localhost:3000/api/v1/road_trip?origin="Denver,CO"&destination="Puebl
 }
 ```
 
-#### Log in
+## Log in
 
 ```
 get http://localhost:3000/api/v1/login params:params
@@ -94,7 +94,7 @@ body:
 }
 ```
 
-#### Log in
+## Log in
 
 ```
 get http://localhost:3000/api/v1/forecast?location=denver,co
