@@ -12,24 +12,25 @@ class Forecast
     private 
 
     def weather_atm(data)
+        current = data[:current]
         {
-            datetime: Time.at(data[:current][:dt]),
-            sunrise: Time.at(data[:current][:sunrise]),
-            sunset: Time.at(data[:current][:sunset]),
-            temperature: data[:current][:temp],
-            feels_like: data[:current][:feels_like],
-            humidity: data[:current][:humidity],
-            uvi: data[:current][:uvi],
-            visibility: data[:current][:visibility],
-            conditions: data[:current][:weather].first[:description],
-            icon: data[:current][:weather].first[:icon]
+            datetime: Time.at(current[:dt]),
+            sunrise: Time.at(current[:sunrise]),
+            sunset: Time.at(current[:sunset]),
+            temperature: current[:temp],
+            feels_like: current[:feels_like],
+            humidity: current[:humidity],
+            uvi: current[:uvi],
+            visibility: current[:visibility],
+            conditions: current[:weather].first[:description],
+            icon: current[:weather].first[:icon]
         }
     end
 
     def weather_5day(data)
         data[:daily].map do |dw|
             {
-                date: Time.at(dw[:dt]).strftime("%F"),
+                date: Time.at(dw[:dt]).strftime("%Y-%m-%d"),
                 sunrise: Time.at(dw[:sunrise]),
                 sunset: Time.at(dw[:sunset]),
                 max_temp: dw[:temp][:max],
@@ -43,7 +44,7 @@ class Forecast
     def hours_8(data)
         data[:hourly].map do |hw|
             {
-                time: Time.at(hw[:dt]).strftime("%T"),
+                time: Time.at(hw[:dt]).strftime("%I:%M %p"),
                 temperature: hw[:temp],
                 conditions: hw[:weather].first[:description],
                 icon: hw[:weather].first[:icon]

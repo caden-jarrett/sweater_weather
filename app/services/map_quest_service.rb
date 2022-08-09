@@ -11,4 +11,12 @@ class MapQuestService
         data = JSON.parse(response.body, symbolize_names: true)
         data[:results][0][:locations][0][:latLng]
     end 
+
+    def self.travel_info(origin, destination)
+        response = conn.get("/directions/v2/route?from=#{origin}&to=#{destination}&timeType=1")
+
+
+        data = JSON.parse(response.body, symbolize_names: true)
+        TravelInfo.new(data, origin, destination)
+    end
 end
