@@ -10,7 +10,7 @@ describe 'user session endpoint' do
             }
             post '/api/v1/sessions', params:login
             
-            user1 = User.first
+            user1 = User.find_by(email: login[:email])
 
             expect(response.status).to eq 200
             expect(user1).to be_a User
@@ -22,6 +22,7 @@ describe 'user session endpoint' do
 
     describe 'sad path' do 
         it 'returns a 400 error if passwords dont match' do
+            User.create(email: 'test@gmail.com', password: 'password123', password_confirmation: 'password123', api_key: 'AASV34gasda')
             login = {
                 email: 'test@gmail.com',
                 password: 'password12'
@@ -35,6 +36,7 @@ describe 'user session endpoint' do
         end
 
         it 'returns a 400 error if a email isnt entered' do
+            User.create(email: 'test@gmail.com', password: 'password123', password_confirmation: 'password123', api_key: 'AASV34gasda')
             login = {
                 email: '',
                 password: 'password123'
@@ -48,6 +50,7 @@ describe 'user session endpoint' do
         end
 
         it 'returns a 400 error if nothing is entered' do
+            User.create(email: 'test@gmail.com', password: 'password123', password_confirmation: 'password123', api_key: 'AASV34gasda')
             login = {
                 email: '',
                 password: ''

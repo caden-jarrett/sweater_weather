@@ -20,7 +20,7 @@ describe 'Munchies API' do
             expect(destination[:data][:attributes][:destination_city]).to eq('Denver, CO')
             expect(destination[:data][:attributes][:forecast]).to be_a(Hash)
             expect(destination[:data][:attributes][:forecast][:summary]).to be_a(String)
-            expect(destination[:data][:attributes][:forecast][:temperature]).to be_a(String)
+            expect(destination[:data][:attributes][:forecast][:temperature]).to be_a(Float)
             expect(destination[:data][:attributes][:restaurant]).to be_a(Hash)
             expect(destination[:data][:attributes][:restaurant][:name]).to be_a(String)
             expect(destination[:data][:attributes][:restaurant][:address]).to be_a(String)
