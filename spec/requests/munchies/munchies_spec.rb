@@ -1,13 +1,13 @@
 require 'rails_helper'
 
-describe 'Munchies API' do
-    describe 'happy path' do
+describe 'Munchies API', :vcr do
+    describe 'happy path', :vcr do
         # before :each do 
         #     response = File.read('/mocks/forecast.json')
         #     @data = JSON.parse(response.body, symbolize_names: true)
         # end
 
-        it 'send a current, daily, and hourly weather report' do
+        it 'send a current, daily, and hourly weather report', :vcr do
 
             get '/api/v1/munchies?location=denver,co&food=chinese'
             expect(response.status).to eq(200)

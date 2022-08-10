@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-describe Forecast do 
-    before :each do 
+describe Forecast, :vcr do 
+    before :each, :vcr do 
         response = File.read('spec/mocks/forecast.json')
         @data = JSON.parse(response, symbolize_names: true)
     end
-    it 'creates a yelp object that can have ruby . called on it' do
+    it 'creates a yelp object that can have ruby . called on it', :vcr do
         forecast = Forecast.new(@data)
 
         expect(forecast.current_weather).to be_a Hash

@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-describe 'Forecast API' do
-    describe 'happy path' do
-        it 'send a current, daily, and hourly weather report' do
+describe 'Forecast API', :vcr do
+    describe 'happy path', :vcr do
+        it 'send a current, daily, and hourly weather report', :vcr do
 
             get '/api/v1/forecast?location=denver,co'
 
@@ -102,8 +102,8 @@ describe 'Forecast API' do
         end
     end
 
-    describe 'sad path' do 
-        it 'returns a 400 error when no query is added' do
+    describe 'sad path', :vcr do 
+        it 'returns a 400 error when no query is added', :vcr do
             get '/api/v1/forecast' 
 
             expect(response.status).to eq(400)

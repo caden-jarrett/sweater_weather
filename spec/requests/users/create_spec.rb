@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-describe 'user creation endpoint' do
-    describe 'happy path' do
-        it 'exposes a users information for creation' do
+describe 'user creation endpoint', :vcr do
+    describe 'happy path', :vcr do
+        it 'exposes a users information for creation', :vcr do
             login = {
                 email: 'test@gmail.com',
                 password: 'password123',
@@ -20,8 +20,8 @@ describe 'user creation endpoint' do
         end
     end
 
-    describe 'sad path' do 
-        it 'returns a 400 error if passwords dont match' do
+    describe 'sad path', :vcr do 
+        it 'returns a 400 error if passwords dont match', :vcr do
             login = {
                 email: 'test@gmail.com',
                 password: 'password123',
@@ -35,7 +35,7 @@ describe 'user creation endpoint' do
             expect(response_body[:error]).to eq "Password confirmation doesn't match Password"
         end
 
-        it 'returns a 400 error if no email is input' do
+        it 'returns a 400 error if no email is input', :vcr do
             login = {
                 email: '',
                 password: 'password123',
@@ -49,7 +49,7 @@ describe 'user creation endpoint' do
             expect(response_body[:error]).to eq "Email can't be blank"
         end
 
-        it 'returns a 400 error if nothing is input' do
+        it 'returns a 400 error if nothing is input', :vcr do
             login = {
                 email: '',
                 password: '',

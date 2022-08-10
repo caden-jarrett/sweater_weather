@@ -1,13 +1,13 @@
 require 'rails_helper'
 
-RSpec.describe MapQuestService do
-    before :each do 
+RSpec.describe MapQuestService, :vcr do
+    before :each, :vcr do 
         response = File.read('spec/mocks/location.json')
         data = JSON.parse(response, symbolize_names: true)
-        @geocode = data[:results][0][:locations][0][:latLng]
+        @geocode = MapQuestService.find_geocode('Pueblo, CO')
     end
 
-    it 'retrieves location data and parses response into longitude and latitude' do
+    it 'retrieves location data and parses response into longitude and latitude', :vcr do
 
         expect(@geocode).to be_a Hash
 

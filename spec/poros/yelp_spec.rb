@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-describe Yelp do 
-    it 'creates a yelp object that can have ruby . called on it' do
+describe Yelp, :vcr do 
+    it 'creates a yelp object that can have ruby . called on it', :vcr do
         @yelp= Yelp.new(YelpService.get_info('denver,co', 'chinese'))
         
         expect(@yelp.name).to eq("Fortune Wok to Table")

@@ -48,6 +48,8 @@ class Api::V1::RoadTripController < ApplicationController
     def get_road_trip(travel, weather_at_eta)
         if weather_at_eta == nil
             render json: { error: 'Unknown API key'}, status:400
+        elsif weather_at_eta.temperature.class == Hash 
+            render json: RoadTripSerializer.daily_format(travel, weather_at_eta)
         elsif weather_at_eta == 'Who Knows'
             render json: ImpossibleRoadTripSerializer.format(travel, weather_at_eta)
         else

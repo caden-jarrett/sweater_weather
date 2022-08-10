@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-describe YelpFacade do
-    it 'returns a hash of restaurant information' do
+describe YelpFacade, :vcr do
+    it 'returns a hash of restaurant information', :vcr do
         response = YelpFacade.get_location('New York, NY', 'chinese')
         expect(response).to_not be_a Array
         expect(response).to be_a Yelp
