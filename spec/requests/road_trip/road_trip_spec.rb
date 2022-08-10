@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-describe 'Road Trip Route' do
-    describe 'happy path' do
-        it 'send a road trip report with road trip info' do
+describe 'Road Trip Route', :vcr do
+    describe 'happy path', :vcr do
+        it 'send a road trip report with road trip info', :vcr do
             user1 = User.create(email: 'test@gmail.com', password: 'password123', password_confirmation: 'password123', api_key: 'e19544b7ea8d785acdabf9b63faae8d7')
             params = {
             "origin": "Denver,CO",
@@ -27,7 +27,7 @@ describe 'Road Trip Route' do
             expect(road_trip[:data][:attributes][:travel_time]).to eq "0 day(s), 1 hour(s), 45 minutes"
         end
 
-        it 'send a road trip report with road trip info' do
+        it 'send a road trip report with road trip info from NY to Panama', :vcr do
             user1 = User.create(email: 'test@gmail.com', password: 'password123', password_confirmation: 'password123', api_key: 'e19544b7ea8d785acdabf9b63faae8d7')
             params = {
             "origin": "New York,NY",
@@ -52,7 +52,7 @@ describe 'Road Trip Route' do
             expect(road_trip[:data][:attributes][:travel_time]).to eq "3 day(s), 8 hour(s), 04 minutes"
         end
 
-        it 'send a road trip report with road trip info' do
+        it 'send a road trip report with road trip info for NY to London' do
             user1 = User.create(email: 'test@gmail.com', password: 'password123', password_confirmation: 'password123', api_key: 'e19544b7ea8d785acdabf9b63faae8d7')
             params = {
             "origin": "New York,NY",
@@ -79,7 +79,7 @@ describe 'Road Trip Route' do
             expect(road_trip[:data][:attributes][:weather_at_eta][:conditions]).to eq 'Who Knows'
         end
 
-        it 'send a road trip report with road trip info' do
+        it 'send a road trip report with road trip info from Russia to South Africa', :vcr do
             user1 = User.create(email: 'test@gmail.com', password: 'password123', password_confirmation: 'password123', api_key: 'e19544b7ea8d785acdabf9b63faae8d7')
             params = {
             "origin": "Khasan, Russia",
@@ -107,8 +107,8 @@ describe 'Road Trip Route' do
         end
     end
 
-    describe 'sad path' do
-        it 'sends a unknow api key error if the api key doesnt match a users' do
+    describe 'sad path', :vcr do
+        it 'sends a unknow api key error if the api key doesnt match a users', :vcr do
             user1 = User.create(email: 'test@gmail.com', password: 'password123', password_confirmation: 'password123', api_key: 'e19544b7ea8d785acdabf9b63faae8d7')
             params = {
             "origin": "Khasan, Russia",
