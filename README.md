@@ -94,7 +94,7 @@ body:
 }
 ```
 
-## Log in
+## Location Weather
 
 ```
 get http://localhost:3000/api/v1/forecast?location=denver,co
